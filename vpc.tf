@@ -9,7 +9,7 @@ resource "aws_vpc" "TF_DMZ" {
 }
 
 resource "aws_subnet" "TF_DMZ1" {
-  vpc_id = aws_vpc.TF_DMZ.id
+  vpc_id     = aws_vpc.TF_DMZ.id
   cidr_block = "192.168.200.128/28"
 
   tags = {
@@ -27,7 +27,7 @@ resource "aws_vpc" "TF_Secure" {
 }
 
 resource "aws_subnet" "TF_Secure1" {
-  vpc_id = aws_vpc.TF_Secure.id
+  vpc_id     = aws_vpc.TF_Secure.id
   cidr_block = "192.168.201.128/28"
 
   tags = {
@@ -38,9 +38,9 @@ resource "aws_subnet" "TF_Secure1" {
 # PEERING:
 resource "aws_vpc_peering_connection" "TF_secure_dmz" {
   #peer_owner_id = var.peer_owner_id
-  peer_vpc_id   = aws_vpc.TF_DMZ.id
-  vpc_id        = aws_vpc.TF_Secure.id
-  auto_accept   = true
+  peer_vpc_id = aws_vpc.TF_DMZ.id
+  vpc_id      = aws_vpc.TF_Secure.id
+  auto_accept = true
 
   tags = {
     Name = "VPC Peering between DMZ and Secure"

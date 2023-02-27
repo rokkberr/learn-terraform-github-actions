@@ -15,10 +15,10 @@ data "aws_ami" "ubuntu" {
 }
 
 resource "aws_instance" "app_server" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = "t3.micro"
   associate_public_ip_address = true
-  subnet_id = aws_subnet.TF_DMZ1.id
+  subnet_id                   = aws_subnet.TF_DMZ1.id
 
   tags = {
     Name = "TZ-DMZ-Server"
@@ -26,10 +26,10 @@ resource "aws_instance" "app_server" {
 }
 
 resource "aws_instance" "db_server" {
-  ami           = data.aws_ami.ubuntu.id
-  instance_type = "t3.micro"
+  ami                         = data.aws_ami.ubuntu.id
+  instance_type               = "t3.micro"
   associate_public_ip_address = false
-  subnet_id = aws_subnet.TF_Secure1.id
+  subnet_id                   = aws_subnet.TF_Secure1.id
 
   tags = {
     Name = "TZ-Secure-Server"
